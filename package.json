@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node index.js"
   },
-  "@distube/yt-dlp": "latest"
+  "dependencies": {
     "@discordjs/voice": "^0.17.0",
-    "@distube/yt-dlp": "^2.1.0",
+    "@distube/yt-dlp": "^2.0.1",
     "discord.js": "^14.14.1",
-    "distube": "^4.1.2"
+    "distube": "^4.1.2",
+    "ffmpeg-static": "^5.2.0"
   }
 }
