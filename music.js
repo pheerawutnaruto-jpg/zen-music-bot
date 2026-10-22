@@ -1,3 +1,4 @@
+require('ffmpeg-static');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
@@ -45,7 +46,6 @@ function initDisTube(client) {
   return distube;
 }
 
-// 🎵 คำสั่ง /play
 const playCommand = new SlashCommandBuilder()
   .setName('play')
   .setDescription('🎶 เล่นเพลงจาก YouTube หรือลิงก์ที่กำหนด')
@@ -77,7 +77,6 @@ async function handlePlayCommand(interaction, client) {
   }
 }
 
-// ⏭️ คำสั่ง /skip
 const skipCommand = new SlashCommandBuilder()
   .setName('skip')
   .setDescription('⏭️ ข้ามไปยังเพลงถัดไปในคิว');
@@ -96,7 +95,6 @@ async function handleSkipCommand(interaction, client) {
   }
 }
 
-// ⏹️ คำสั่ง /stop
 const stopCommand = new SlashCommandBuilder()
   .setName('stop')
   .setDescription('⏹️ หยุดเล่นเพลงและให้บอทออกจากห้องเสียง');
@@ -111,7 +109,6 @@ async function handleStopCommand(interaction, client) {
   await interaction.reply({ content: '⏹️ หยุดเล่นเพลงและออกจากห้องเสียงเรียบร้อยแล้วครับ!' });
 }
 
-// 📜 คำสั่ง /queue
 const queueCommand = new SlashCommandBuilder()
   .setName('queue')
   .setDescription('📜 ดูรายชื่อเพลงทั้งหมดในคิวปัจจุบัน');
@@ -132,7 +129,6 @@ async function handleQueueCommand(interaction, client) {
   await interaction.reply({ embeds: [embed] });
 }
 
-// ⏸️ คำสั่ง /pause
 const pauseCommand = new SlashCommandBuilder()
   .setName('pause')
   .setDescription('⏸️ พักการเล่นเพลงชั่วคราว');
@@ -145,7 +141,6 @@ async function handlePauseCommand(interaction, client) {
   await interaction.reply({ content: '⏸️ พักการเล่นเพลงเรียบร้อยแล้ว' });
 }
 
-// ▶️ คำสั่ง /resume
 const resumeCommand = new SlashCommandBuilder()
   .setName('resume')
   .setDescription('▶️ เล่นเพลงต่อจากที่พักไว้');
