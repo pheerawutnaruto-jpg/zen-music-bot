@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
 
@@ -132,14 +132,34 @@ async function handleQueueCommand(interaction, client) {
   await interaction.reply({ embeds: [embed] });
 }
 
+// ⏸️ คำสั่ง /pause
+const pauseCommand = new SlashCommandBuilder()
+  .setName('pause')
+  .setDescription('⏸️ พักการเล่นเพลงชั่วคราว');
+
+async function handlePauseCommand(interaction, client) {
+  const music = initDisTube(client);
+  const queue = music.getQueue(interaction.guildId);
+  if (!queue) return await interaction.reply({ content: '❌ ไม่มีเพลงกำลังเล่นครับ!', ephemeral: true });
+  queue.pause();
+  await interaction.reply({ content: '⏸️ พักการเล่นเพลงเรียบร้อยแล้ว' });
+}
+
+// ▶️ คำสั่ง /resume
+const resumeCommand = new SlashCommandBuilder()
+  .setName('resume')
+  .setDescription('▶️ เล่นเพลงต่อจากที่พักไว้');
+
+async function handleResumeCommand(interaction, client) {
+  const music = initDisTube(client);
+  const queue = music.getQueue(interaction.guildId);
+  if (!queue) return await interaction.reply({ content: '❌ ไม่มีเพลงในคิวครับ!', ephemeral: true });
+  queue.resume();
+  await interaction.reply({ content: '▶️ เล่นเพลงต่อเรียบร้อยแล้ว' });
+}
+
 module.exports = {
-  playCommand,
-  skipCommand,
-  stopCommand,
-  queueCommand,
-  handlePlayCommand,
-  handleSkipCommand,
-  handleStopCommand,
-  handleQueueCommand,
+  playCommand, skipCommand, stopCommand, queueCommand, pauseCommand, resumeCommand,
+  handlePlayCommand, handleSkipCommand, handleStopCommand, handleQueueCommand, handlePauseCommand, handleResumeCommand,
   initDisTube
 };
