@@ -6,7 +6,6 @@ const {
   initDisTube
 } = require('./music');
 
-// รัน HTTP Server เผื่อโฮสต์บน Render หรือบริการ Cloud อื่นๆ
 const httpServer = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Zen Bot Music is running!\n');
