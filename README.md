@@ -1,1 +1,1 @@
-# zen-bot-assets
+# zen-music-bot
